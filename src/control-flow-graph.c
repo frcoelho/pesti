@@ -19,6 +19,7 @@
 tblock *start_block = NULL;
 tblock *end_block = NULL;
 
+double start_range, end_range, step;
 
 /***
 	getElement: This function returns a node that contais a set of nodes or edges
@@ -185,6 +186,10 @@ void createListProbSwitch(xmlNode *node, tbranch_switch_node *switch_node)
 			if (!strcmp(current->name, "probability")){
 				switch_node->prob_cases[i].prob_start = getAttrDbl(current, "start");
 				switch_node->prob_cases[i].prob_finish = getAttrDbl(current, "finish");
+				start_range = getAttrDbl(current, "start-range");
+				end_range = getAttrDbl(current, "end-range");
+				step = getAttrDbl(current, "step");
+
 				i++;
 			}
 			current = current->next;
@@ -214,6 +219,9 @@ void createListProbLoop(xmlNode *node, tloop_node *loop_node)
 		case '2': {
 				loop_node->probability.prob_start = getAttrDbl(node, "start");
 				loop_node->probability.prob_finish = getAttrDbl(node, "finish");
+				start_range = getAttrDbl(node, "start-range");
+				end_range = getAttrDbl(node, "end-range");
+				step = getAttrDbl(node, "step");
 				pdf = getAttrStr(node, "pdf");
 				loop_node->probability.probability_density_function = pdf[0];
 				free(pdf);
@@ -249,6 +257,9 @@ void buildClauses(xmlNode *node, tclauses_cond *clauses){
 				while(probability) // scan tags probability
 				{
 					if (!strcmp(probability->name, "probability")){
+						start_range = getAttrDbl(probability, "start-range");
+						end_range = getAttrDbl(probability, "end-range");
+						step = getAttrDbl(probability, "step");
 						clauses->lconditions[i].probability.prob_start = getAttrDbl(probability, "start");
 						clauses->lconditions[i].probability.prob_finish = getAttrDbl(probability, "finish");
 						clauses->lconditions[i].probability.probability_density_function = getAttrChr(probability, "pdf");
@@ -498,14 +509,16 @@ void printtree(ttree_express *r)
 	}
 }
 
-void listNodes(tblock *start)
+void listNodes(tblock *start, double finish)
 {
 	FILE *pesti;
 	char strline[255];
 	tblock *node_start = start;
 	tblock *ax=NULL;
+	char filename[20];
 
-	pesti = fopen("pesti.csv", "w+");
+	snprintf(filename, sizeof(filename), "pesti_%f.csv", finish);
+	pesti = fopen(filename, "w+");
 	fprintf(pesti, "%s", "ID;CLASS;TIMES_EXEC;CYCLES;CYCLES_CONSUMED;ENERGY;ENERGY_CONSUMED\n");
 
 	while(node_start)

@@ -23,7 +23,7 @@ double getAttrDbl(xmlNode *, const char *);
 void *createNode(xmlNode *);
 void addBlock(xmlNode *);
 void loadNodes(xmlNode *);
-void listNodes(tblock *);
+void listNodes(tblock *, double);
 tblock *searchBlock(tblock *, const char *);
 void buildGraphFromEdges(xmlNode *);
 void loadCfg(char *);
