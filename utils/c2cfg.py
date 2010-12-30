@@ -940,6 +940,7 @@ def build_powerC_tab(lines):
 
 # This function builds probability tag inside node tag type branch
 def buildProbabilityBranch(root, current_block, clauses_if, strprob, powerC):
+	global start, end, step
 	cycles = 0;
 	energy = 0;
 	i=0;
@@ -955,6 +956,10 @@ def buildProbabilityBranch(root, current_block, clauses_if, strprob, powerC):
 		node_prob = root.createElement("probability")
 		node_prob.setAttribute("start", "0.0")
 		node_prob.setAttribute("finish", prob)
+		if start and end and step:
+			node_prob.setAttribute("start-range", start)
+			node_prob.setAttribute("end-range", end)
+			node_prob.setAttribute("step", step)
 		node_prob.setAttribute("pdf", "1")
 		node_cond.appendChild(node_prob)
 		current_block.appendChild(node_cond)
@@ -966,6 +971,7 @@ def buildProbabilityBranch(root, current_block, clauses_if, strprob, powerC):
 
 
 def buildProbabilitySwitch(root, current_block, strprob):
+	global start, end, step
 
 	prob = extractParameters(strprob)
 	axprob = prob[0:len(prob)-1]
@@ -983,11 +989,17 @@ def buildProbabilitySwitch(root, current_block, strprob):
 			node_prob.setAttribute("start", str(start_range))
 			node_prob.setAttribute("finish", str(float(range_prob[0].strip()) + start_range))
 			start_range = start_range + float(range_prob[0].strip())
-		
+		if start and end and step:
+			node_prob.setAttribute("start-range", start)
+			node_prob.setAttribute("end-range", end)
+			node_prob.setAttribute("step", step)
+
 		current_block.appendChild(node_prob)	
 
 
 def buildProbabilityLoop(root, current_block, clauses_loop, strprob, powerC):
+	global start, end, step
+
 	axprob = strprob
 	idloop = strprob
 	if (axprob.find("@LoopMaxProb") >= 0):
@@ -1006,6 +1018,10 @@ def buildProbabilityLoop(root, current_block, clauses_loop, strprob, powerC):
 		node_prob.setAttribute("idloop", idloop)
 		node_prob.setAttribute("start", start)
 		node_prob.setAttribute("finish", finish)
+		if start and end and step:
+			node_prob.setAttribute("start-range", start)
+			node_prob.setAttribute("end-range", end)
+			node_prob.setAttribute("step", step)
 		node_prob.setAttribute("pdf", pdf)
 		current_block.appendChild(node_prob)	
 	elif (axprob.find("@LoopMax") >= 0):
@@ -1042,6 +1058,10 @@ def buildProbabilityLoop(root, current_block, clauses_loop, strprob, powerC):
 			node_prob.setAttribute("idloop", idloop)
 			node_prob.setAttribute("start", "0.0")
 			node_prob.setAttribute("finish", prob)
+			if start and end and step:
+				node_prob.setAttribute("start-range", start)
+				node_prob.setAttribute("end-range", end)
+				node_prob.setAttribute("step", step)
 			node_prob.setAttribute("pdf", "1")			# falta pegar do xml (CFG)
 			node_cond.appendChild(node_prob)
 			current_block.appendChild(node_cond)
@@ -1377,6 +1397,13 @@ if __name__ == '__main__':
 	#These print is different, they print the graph that will be executed
 	imprime_blocos_final(lista[1])
 	
+	if len(argv) == 11:
+		start = argv[8]
+		end = argv[9]
+		step = argv[10]
+	else:
+		start = end = step = None
+
 	"""Graph to xml format """
 	graphml = passa_graphml(arestas,lista_blocos, argv[5])
 	arq_gerado = open(argv[3],"w")

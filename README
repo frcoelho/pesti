@@ -1,8 +1,28 @@
-./build/pesti examples/if.xml 1000 0.03 0.95
+Creating XML file from assembler (.s) and source code (*.c)
+-----------------------------------------------------------
 
-pesti <CFG> <iterations> <error> <confidence>
+# ./c2cfg.sh <program> <pipelines> <start> <end> <step>
+
+program - filename
+pipelines - number of pipelines
+start - start point for simulation
+end - end point for simulation
+step - step to increment from start to end range
+
+Example:
+
+./c2cfg.sh bolha 6 0.45 0.55 0.3
+
+Running simulation
+------------------
+
+# pesti <CFG> <iterations> <error> <confidence>
 
 CFG - xml file with program codified
 iterations - number of iterations to run
 error - error to be considered in simulation
 confidence - confidence to be considered in simulation
+
+Example:
+
+pesti examples/bolha.xml 1000 0.03 0.95
