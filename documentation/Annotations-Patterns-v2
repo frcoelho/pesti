@@ -1,0 +1,36 @@
+Padrão para anotação do código C
+
+	/* @BranchProb(P1, P2, P3, ... , Pn, [probFunction]) */
+		P1...PN: X:   número entre 0 e 1 que define a probabilidade de execução da iésima cláusula que compões o IF
+		probFunction:  um número para indicar qual função de distribuição de probabilidades utilizar (ainda não implementado)
+		Utilizado em desvios do tipo IF
+
+		Já implementado
+
+	/* [ID] @LoopMax(execTimes) */
+		execTimes: nro máximo de repetições do loop
+		ID: identificador. Obrigatório para uso em Loop. Deve ser formado da seguinte maneira: [A-Z][A-Z]dd, ou seja inicia com 2 letras maiúsculs 			e finaliza com 2 nros.
+
+		Já implementado
+
+
+	/* [ID] @LoopMaxProb(lMin:lMax, [probFunction]) */
+		lMin: nro mínimo de repetições do loop
+		lMax: nro máximo de repetições do loop
+		ID: identificador. Obrigatório para uso em Loop
+		
+		O parâmtro probIn ainda não foi implementado, por enquanto somente foram implementados os parâmetros lMin e lMax utilizando distribuição de probabilidade uniforme. 
+
+	/* [ID] @LoopDep(lEquation) */
+		lEquation: equação para calcular o nro de repetições do loop atual quando este depende do nro de repetições de outros loops. As variáveis da equação devem conter o identificador dos loop's que geram a dependência do loop atual. Ele não pode depender de loop's que ocorram após ele. Funcionará apenas as operações básicas ( +, -, * , /)
+		
+		Esta annotation ainda não foi implementada
+
+	/* [ID] @LoopProb(P1, P2, P3, ... , Pn, [probFunction])  */
+
+	/* @ChoiceProb(prob1, prob2, ..., [probFunction]) */ Por enquanto está implementado como SwitchProb
+		probN: probabilidade de ocorrer o caso caseN.
+		Esta anotação deve ser utilizada com o statement switch
+	
+		Já implementado
+	

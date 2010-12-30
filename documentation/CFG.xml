@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<cfg c-file="directed" title="G">
+	<start-node idnode="I0"/>
+	<finish-node idnode="F12"/>
+	<nodes>
+		<node class="1" clock-cycles="5" energy="5" id="I0">
+			<probability finish="1.0" pdf="0.1" start="0.4"/>
+		</node>
+		<node class="0" clock-cycles="5" energy="5" id="N1"/>
+		<node class="2" clock-cycles="5" energy="5" id="N2">
+			<probability idloop="LA" max-times="25" type="1"/>
+		</node>
+		<node class="0" clock-cycles="5" energy="5" id="N3"/>
+		<node class="2" clock-cycles="5" energy="5" id="N4">
+			<probability finish="100" idloop="LB" pdf="3" start="10" type="2"/>
+		</node>
+		<node class="1" clock-cycles="5" energy="5" id="N5">
+			<probability finish="0.97" pdf="4" start="0.0"/>
+		</node>
+		<node class="0" clock-cycles="5" energy="5" id="N6"/>
+		<node class="0" clock-cycles="5" energy="5" id="N7"/>
+		<node class="0" clock-cycles="5" energy="5" id="N8"/>
+		<node class="0" clock-cycles="5" energy="5" id="N9"/>
+		<node class="0" clock-cycles="5" energy="5" id="N10"/>
+		<node class="0" clock-cycles="5" energy="5" id="N11"/>
+		<node class="0" clock-cycles="5" energy="5" id="F12"/>
+	</nodes>
+	<edges>
+		<edge from-idnode="I0" to-idnode="N1"/>
+		<edge from-idnode="N1" to-idnode="N2"/>
+		<edge from-idnode="N2" to-idnode="N3"/>
+		<edge from-idnode="N3" to-idnode="N4"/>
+		<edge from-idnode="N4" to-idnode="N5"/>
+		<edge from-idnode="N5" to-idnode="N6"/>
+		<edge from-idnode="N5" to-idnode="N7"/>
+		<edge from-idnode="N6" to-idnode="N7"/>
+		<edge from-idnode="N4" to-idnode="N8"/>
+		<edge from-idnode="N7" to-idnode="N4"/>
+		<edge from-idnode="N2" to-idnode="N9"/>
+		<edge from-idnode="N8" to-idnode="N2"/>
+		<edge from-idnode="I0" to-idnode="N10"/>
+		<edge from-idnode="N10" to-idnode="N11"/>
+		<edge from-idnode="N9" to-idnode="N11"/>
+		<edge from-idnode="N11" to-idnode="F12"/>
+	</edges>
+</cfg>

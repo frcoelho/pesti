@@ -1,0 +1,1 @@
+if ((vl_teste==4 || nm_titulo != 12345) && (nr_total>=MAX_TOT || !teste))

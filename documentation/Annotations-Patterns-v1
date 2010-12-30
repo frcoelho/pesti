@@ -1,0 +1,26 @@
+Padrão para anotação do código C
+
+	/* [ID] @BranchProb(probThen, [probFunction]) */
+		probThen: número entre 0 e 1 que define a probabilidade de execução do bloco then
+		probFunction:  um número para indicar qual função de distribuição de probabilidades utilizar (necessita de mais pesquisas)
+		ID (opcional): identificador. 
+		Utilizado em desvios do tipo IF
+
+	/* [ID] @LoopMax(execTimes) */
+		execTimes: nro máximo de repetições do loop
+		ID (opcional): identificador
+		Utilizado em Loop
+
+	/* [ID] @LoopProb(lMin:lMax, [{(probIn1, rMin1, rMax1) ... }], [probFunction]) */
+		lMin: nro mínimo de repetições do loop
+		lMax: nro máximo de repetições do loop
+		[{(probIn1, rMin1, rMax1) ... }]: opcional
+		probIn1: probabilidade de ocorrer um número de repetições entre rMin1 e rMax1
+		Utilizado em Loop
+
+	/* [ID] @LoopDep(lEquation) */
+		lEquation: equação para calcular o nro de repetições do loop atual quando este depende do nro de repetições de outros loops. As variáveis da 			equação devem conter o identificador dos loop's que geram a dependência do loop atual. Ele não pode depender de loop's que ocorram após ele. 			Funcionará apenas as operações básicas ( +, -, * , /)
+
+	/* [ID] @SwitchProb({(prob1, case1), (prob2, case2), ...}, [probFunction]) */
+		probN: probabilidade de ocorrer o caso caseN.
+	

@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<cfg c-file="directed" title="G">
+	<start-node idnode="I0"/>
+	<finish-node idnode="F49"/>
+	<nodes>
+		<node class="0" clock-cycles="16" energy="24.64" id="I0">
+			{
+  double a[3], x1[2], x2[2];
+  int result, r;
+  a[0] = 1.75;
+  a[1] = -3.2;
+  a[2] = 2.45;
+
+			mov stmfd sub sub adr ldmia str str adr ldmia str str 
+		</node>
+		<node class="0" clock-cycles="6" energy="6.28" id="N1">
+			}
+
+			mov ldmea 
+		</node>
+		<node class="0" clock-cycles="6" energy="9.42" id="N2">
+			  r = qurt(a, x1, x2);
+			adr ldmia str str 
+		</node>
+		<node class="0" clock-cycles="13" energy="14.715" id="N3">
+			  result = *(int *) &amp;x1[0];
+  return 0;
+
+			sub sub sub mov mov mov bl mov str ldr str mov 
+		</node>
+		<node bool-express="A" class="1" clock-cycles="0" energy="0.0" id="N4">
+			<condition clock-cycles="8" energy="5.07" id="A">
+				<probability finish="0.0" pdf="1" start="0.0"/>
+			</condition>
+			{
+  double d, w1, w2, res;
+  int ret=0;
+  /* @BranchProb(0.0, 1) */
+  if (a[0] == 0.0)
+
+			mov stmfd sub sub str str str mov str ldr ldfd cmf beq b 
+		</node>
+		<node class="0" clock-cycles="4" energy="4.56" id="N5">
+			  {
+    ret = (999);
+
+			ldr str 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N6">
+			  }
+
+			
+		</node>
+		<node class="0" clock-cycles="33" energy="60.062" id="N7">
+			  d = a[1] * a[1] - 4 * a[0] * a[2];
+  w1 = 2.0 * a[0];
+
+			mov ldr add mov ldr add ldfd ldfd mufd ldr ldfd mufd mov ldr add ldfd mufd sufd stfd ldr ldfd adfd stfd 
+		</node>
+		<node class="0" clock-cycles="45" energy="85.86" id="N8">
+			    {
+      x1[0] = (-a[1] + w2) / w1;
+      x1[1] = 0.0;
+      x2[0] = (-a[1] - w2) / w1;
+      x2[1] = 0.0;
+
+			ldr mov ldr add ldfd ldfd sufd ldfd dvfd stfd mov ldr add adr ldmia stmia ldr mov ldr add ldfd mnfd ldfd sufd ldfd dvfd stfd mov ldr add adr ldmia stmia b 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N9">
+			    } 
+
+			
+		</node>
+		<node bool-express="A" class="1" clock-cycles="0" energy="0.0" id="N10">
+			<condition clock-cycles="8" energy="5.07" id="A">
+				<probability finish="0.0" pdf="1" start="0.0"/>
+			</condition>
+			  else 
+  {
+      /* @BranchProb(0.0, 1) */
+      if (d == 0.0)
+
+			ldfd cmf beq b 
+		</node>
+		<node class="0" clock-cycles="36" energy="67.582" id="N11">
+			    {
+      x1[0] = -a[1] / w1;
+      x1[1] = 0.0;
+      x2[0] = x1[0];
+      x2[1] = 0.0;
+
+			ldr mov ldr add ldfd mnfd ldfd dvfd stfd mov ldr add adr ldmia stmia ldr ldr ldmia stmia mov ldr add adr ldmia stmia b 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N12">
+			    } 
+
+			
+		</node>
+		<node class="0" clock-cycles="39" energy="78.074" id="N13">
+			  else
+    {
+      w2 /= w1;
+      x1[0] = -a[1] / w1;
+      x1[1] = w2;
+      x2[0] = x1[0];
+      x2[1] = -w2;
+
+			ldfd ldfd dvfd stfd ldr mov ldr add ldfd mnfd ldfd dvfd stfd mov ldr add sub ldmia stmia ldr ldr ldmia stmia mov ldr add ldfd mnfd stfd 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N14">
+			    }
+
+			
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N15">
+			  }
+
+			
+		</node>
+		<node class="0" clock-cycles="6" energy="8.994" id="N16">
+			      return (ret);
+}
+
+			ldr mov ldmea 
+		</node>
+		<node class="0" clock-cycles="9" energy="18.7915" id="N17">
+			  res = fabs(d);
+			sub ldmia bl stfd ldmfd str str 
+		</node>
+		<node class="0" clock-cycles="9" energy="18.7915" id="N18">
+			  w2 = sqrt(res);
+			sub ldmia bl stfd ldmfd str str 
+		</node>
+		<node bool-express="A" class="1" clock-cycles="0" energy="0.0" id="N19">
+			<condition clock-cycles="8" energy="5.07" id="A">
+				<probability finish="1.0" pdf="1" start="0.0"/>
+			</condition>
+			  /* @BranchProb(1.0, 1) */
+  if (d &gt; 0.0)
+			ldfd cmfe bgt b 
+		</node>
+		<node bool-express="A" class="1" clock-cycles="0" energy="0.0" id="N20">
+			<condition clock-cycles="8" energy="5.07" id="A">
+				<probability finish="0.0" pdf="1" start="0.0"/>
+			</condition>
+			{
+	double y;
+  /* @BranchProb(0.0, 1)*/
+  if (x &lt; 0)
+
+			mov stmfd sub sub str str ldfd cmfe bmi b 
+		</node>
+		<node class="0" clock-cycles="5" energy="11.686" id="N21">
+			  {
+	y = -x;
+
+			ldfd mnfd stfd b 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N22">
+			  }
+
+			
+		</node>
+		<node class="0" clock-cycles="5" energy="9.237" id="N23">
+			  else
+  {
+	y = x;
+
+			sub ldmia str str 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N24">
+			  }
+
+			
+		</node>
+		<node class="0" clock-cycles="11" energy="16.877" id="N25">
+			  return  (y);
+}
+
+			sub ldmia stmfd ldfd ldmea 
+		</node>
+		<node bool-express="A" class="1" clock-cycles="0" energy="0.0" id="N26">
+			<condition clock-cycles="8" energy="5.07" id="A">
+				<probability finish="0.0" pdf="1" start="0.0"/>
+			</condition>
+			{
+  double x = val/10;
+  double dx;
+  double diff;
+  double min_tol = 0.00001;
+  double fdiff;
+  int i, flag;
+  flag = 0;
+  /* @BranchProb(0.0, 1) */
+  if ( val == 0 ) 
+
+			mov stmfd sub sub str str ldfd dvfd stfd adr ldmia str str mov str ldfd cmf beq b 
+		</node>
+		<node class="0" clock-cycles="7" energy="10.611" id="N27">
+			  {
+    x = 0;
+
+			adr ldmia str str b 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N28">
+			  }  
+
+			
+		</node>
+		<node class="0" clock-cycles="0" energy="4.51" id="N29">
+			  else
+ {
+    /* LP01 @LoopMax(20, 1) */
+
+			
+		</node>
+		<node class="2" clock-cycles="12" energy="11.88" id="N30">
+			<probability idloop="LP01" max-times="20" type="1"/>
+			    for (i=1; i&lt;20; i++) 
+
+			mov str ldr cmp ble b ldr add str b 
+		</node>
+		<node bool-express="A" class="1" clock-cycles="0" energy="0.0" id="N31">
+			<condition clock-cycles="8" energy="5.07" id="A">
+				<probability finish="0.35" pdf="1" start="0.0"/>
+			</condition>
+			     {
+	/* @BranchProb(0.35, 1) */
+      if ( flag != 0) 
+
+			ldr cmp beq 
+		</node>
+		<node class="0" clock-cycles="26" energy="54.784" id="N32">
+			      {
+	dx = (val - (x*x)) / (2.0 * x);
+	x = x + dx;
+	diff = val - (x*x);
+
+			ldfd ldfd mufd ldfd sufd ldfd adfd dvfd stfd ldfd ldfd adfd stfd ldfd ldfd mufd ldfd sufd stfd 
+		</node>
+		<node class="0" clock-cycles="3" energy="3.246" id="N33">
+				{
+		flag = 1;
+
+			mov str 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N34">
+				}
+
+			
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N35">
+			      }
+
+			
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N36">
+			      else 
+	{
+	  x =x;
+
+			
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N37">
+				}
+
+			
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N38">
+			    }
+
+			
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N39">
+			 }
+
+			
+		</node>
+		<node class="0" clock-cycles="11" energy="16.877" id="N40">
+			  return x;
+}
+
+			sub ldmia stmfd ldfd ldmea 
+		</node>
+		<node class="0" clock-cycles="10" energy="18.7915" id="N41">
+				fdiff = fabs(diff);
+			sub ldmia bl stfd ldmfd str str 
+		</node>
+		<node bool-express="A" class="1" clock-cycles="0" energy="0.0" id="N42">
+			<condition clock-cycles="12" energy="8.16" id="A">
+				<probability finish="0.05" pdf="1" start="0.04"/>
+			</condition>
+				/* @BranchProb(0.05, 1) */ 
+	if ( fdiff &lt;= min_tol ) 
+
+			ldfd ldfd cmfe bls b 
+		</node>
+		<node bool-express="A" class="1" clock-cycles="0" energy="0.0" id="N43">
+			<condition clock-cycles="8" energy="5.07" id="A">
+				<probability finish="0.0" pdf="1" start="0.0"/>
+			</condition>
+			{
+	double y;
+  /* @BranchProb(0.0, 1)*/
+  if (x &lt; 0)
+
+			mov stmfd sub sub str str ldfd cmfe bmi b 
+		</node>
+		<node class="0" clock-cycles="5" energy="11.686" id="N44">
+			  {
+	y = -x;
+
+			ldfd mnfd stfd b 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N45">
+			  }
+
+			
+		</node>
+		<node class="0" clock-cycles="5" energy="9.237" id="N46">
+			  else
+  {
+	y = x;
+
+			sub ldmia str str 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N47">
+			  }
+
+			
+		</node>
+		<node class="0" clock-cycles="11" energy="16.877" id="N48">
+			  return  (y);
+}
+
+			sub ldmia stmfd ldfd ldmea 
+		</node>
+		<node class="0" clock-cycles="0" energy="0" id="F49">
+			
+			
+		</node>
+	</nodes>
+	<edges>
+		<edge from-idnode="N3" to-idnode="N1"/>
+		<edge from-idnode="I0" to-idnode="N2"/>
+		<edge from-idnode="N2" to-idnode="N4"/>
+		<edge from-idnode="N4" to-idnode="N5"/>
+		<edge from-idnode="N5" to-idnode="N6"/>
+		<edge from-idnode="N4" to-idnode="N7"/>
+		<edge from-idnode="N6" to-idnode="N7"/>
+		<edge from-idnode="N19" to-idnode="N8"/>
+		<edge from-idnode="N8" to-idnode="N9"/>
+		<edge from-idnode="N19" to-idnode="N10"/>
+		<edge from-idnode="N10" to-idnode="N11"/>
+		<edge from-idnode="N11" to-idnode="N12"/>
+		<edge from-idnode="N12" to-idnode="N13"/>
+		<edge from-idnode="N10" to-idnode="N13"/>
+		<edge from-idnode="N13" to-idnode="N14"/>
+		<edge from-idnode="N14" to-idnode="N15"/>
+		<edge from-idnode="N12" to-idnode="N15"/>
+		<edge from-idnode="N15" to-idnode="N16"/>
+		<edge from-idnode="N9" to-idnode="N16"/>
+		<edge from-idnode="N7" to-idnode="N17"/>
+		<edge from-idnode="N17" to-idnode="N20"/>
+		<edge from-idnode="N18" to-idnode="N26"/>
+		<edge from-idnode="N16" to-idnode="N3"/>
+		<edge from-idnode="N20" to-idnode="N21"/>
+		<edge from-idnode="N21" to-idnode="N22"/>
+		<edge from-idnode="N20" to-idnode="N23"/>
+		<edge from-idnode="N23" to-idnode="N24"/>
+		<edge from-idnode="N24" to-idnode="N25"/>
+		<edge from-idnode="N22" to-idnode="N25"/>
+		<edge from-idnode="N25" to-idnode="N18"/>
+		<edge from-idnode="N26" to-idnode="N27"/>
+		<edge from-idnode="N27" to-idnode="N28"/>
+		<edge from-idnode="N26" to-idnode="N29"/>
+		<edge from-idnode="N29" to-idnode="N30"/>
+		<edge from-idnode="N30" to-idnode="N31"/>
+		<edge from-idnode="N31" to-idnode="N32"/>
+		<edge from-idnode="N42" to-idnode="N33"/>
+		<edge from-idnode="N33" to-idnode="N34"/>
+		<edge from-idnode="N42" to-idnode="N35"/>
+		<edge from-idnode="N34" to-idnode="N35"/>
+		<edge from-idnode="N31" to-idnode="N36"/>
+		<edge from-idnode="N36" to-idnode="N37"/>
+		<edge from-idnode="N37" to-idnode="N38"/>
+		<edge from-idnode="N35" to-idnode="N38"/>
+		<edge from-idnode="N30" to-idnode="N39"/>
+		<edge from-idnode="N38" to-idnode="N30"/>
+		<edge from-idnode="N39" to-idnode="N40"/>
+		<edge from-idnode="N28" to-idnode="N40"/>
+		<edge from-idnode="N32" to-idnode="N41"/>
+		<edge from-idnode="N41" to-idnode="N43"/>
+		<edge from-idnode="N40" to-idnode="N19"/>
+		<edge from-idnode="N43" to-idnode="N44"/>
+		<edge from-idnode="N44" to-idnode="N45"/>
+		<edge from-idnode="N43" to-idnode="N46"/>
+		<edge from-idnode="N46" to-idnode="N47"/>
+		<edge from-idnode="N47" to-idnode="N48"/>
+		<edge from-idnode="N45" to-idnode="N48"/>
+		<edge from-idnode="N48" to-idnode="N42"/>
+		<edge from-idnode="N1" to-idnode="F49"/>
+	</edges>
+</cfg>

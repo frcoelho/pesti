@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<cfg c-file="directed" title="G">
+	<start-node idnode="I0"/>
+	<finish-node idnode="F44"/>
+	<nodes>
+		<node class="0" clock-cycles="22" energy="39.703" id="I0">
+			{
+  unsigned char aa[] = &quot;asdffeagewaHAFEFaeDsFEawFdsFaefaeerdjgpim23&quot;;
+  unsigned short i1, i2;
+
+			mov stmfd sub sub str str ldr sub mov ldmia stmia ldmia stmia ldmia stmia 
+		</node>
+		<node class="0" clock-cycles="4" energy="3.226" id="N1">
+			  {
+	i1=0;
+
+			mov strh 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N2">
+			  }
+
+			
+		</node>
+		<node class="0" clock-cycles="7" energy="7.348" id="N3">
+			  return 0;
+}
+
+			mov mov ldmea 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N4">
+			  i1 = icrc(0, aa, 40, (short) 0, 1);
+			
+		</node>
+		<node bool-express="A" class="1" clock-cycles="0" energy="0.0" id="N5">
+			<condition clock-cycles="8" energy="5.07" id="A">
+				<probability finish="1.0" pdf="1" start="0.0"/>
+			</condition>
+			  /* @BranchProb(1.0, 1) */
+  if (i2==387)
+
+			sub mov str mov mov mov mov bl mov strh ldrh ldr cmp bne 
+		</node>
+		<node bool-express="A" class="1" clock-cycles="0" energy="0.0" id="N6">
+			<condition clock-cycles="8" energy="5.07" id="A">
+				<probability finish="0.4896" pdf="1" start="0.0"/>
+			</condition>
+			{
+  static unsigned short icrctb[256], init = 0;
+  static unsigned char rchr[256];
+  unsigned short tmp1, tmp2, j, cword = crc;
+  static unsigned char it[16] = {0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15};
+  /* @BranchProb(0.4896, 1) */
+  if (init!=0)
+
+			mov stmfd sub sub str str strh strh ldrh strh ldr ldrh cmp beq 
+		</node>
+		<node class="0" clock-cycles="4" energy="10.45" id="N7">
+			  {
+      init = 1;
+      /* LP02 @LoopMax(256, 1) */
+
+			ldr mov strh 
+		</node>
+		<node class="2" clock-cycles="12" energy="11.75" id="N8">
+			<probability idloop="LP02" max-times="256" type="1"/>
+			      for (j=0; j &lt;= 255; j++)
+
+			mov strh ldrh cmp bls b ldrh add strh b 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N9">
+			      {
+
+			
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N10">
+			      }
+
+			
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N11">
+			  }
+
+			
+		</node>
+		<node bool-express="A" class="1" clock-cycles="0" energy="0.0" id="N12">
+			<condition clock-cycles="8" energy="5.07" id="A">
+				<probability finish="0.5186" pdf="1" start="0.0"/>
+			</condition>
+			  /* @BranchProb(0.5186, 1) */
+  if (jinit &gt;= 0)
+
+			ldrsh cmp blt 
+		</node>
+		<node class="0" clock-cycles="9" energy="12.502" id="N13">
+			  {
+    cword = ((unsigned char) jinit) | (((unsigned char) jinit) &lt;&lt; 8);
+
+			ldrb mov ldrb mov orr strh b 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N14">
+			  }
+
+			
+		</node>
+		<node bool-express="A" class="1" clock-cycles="0" energy="0.0" id="N15">
+			<condition clock-cycles="8" energy="5.07" id="A">
+				<probability finish="0.2364" pdf="1" start="0.0"/>
+			</condition>
+			  else 
+  {
+	  /* @BranchProb(0.2364, 1) */
+	  if (jrev &lt; 0)
+
+			ldr cmp bge 
+		</node>
+		<node class="0" clock-cycles="17" energy="24.693" id="N16">
+				  {
+	  		cword = rchr[((unsigned char) ((cword) &gt;&gt; 8))] | rchr[((unsigned char) ((cword) &amp; 0xFF))] &lt;&lt; 8;
+
+			ldr ldrh mov and ldrb mov ldr ldrb ldrb mov orr strh 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N17">
+				  }
+
+			
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N18">
+			  }   
+
+			
+		</node>
+		<node class="0" clock-cycles="0" energy="4.51" id="N19">
+			  /* LP03 @LoopMax(40, 1) */
+
+			
+		</node>
+		<node class="2" clock-cycles="15" energy="14.46" id="N20">
+			<probability idloop="LP03" max-times="40" type="1"/>
+			  for (j = 1; j &lt;= len; j++)
+
+			mov strh ldrh ldr cmp bls b ldrh add strh b 
+		</node>
+		<node bool-express="A" class="1" clock-cycles="0" energy="0.0" id="N21">
+			<condition clock-cycles="8" energy="5.07" id="A">
+				<probability finish="0.4804" pdf="1" start="0.0"/>
+			</condition>
+			  {
+      /* @BranchProb(0.4804, 1) */
+      if (jrev &lt; 0)
+
+			ldr cmp bge 
+		</node>
+		<node class="0" clock-cycles="19" energy="25.865" id="N22">
+			      {
+    	  tmp1 = rchr[lin[j]] ^ ((unsigned char) ((cword) &gt;&gt; 8));
+
+			ldr ldrh ldr add ldrb ldrh mov mov ldrb eor and strh b 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N23">
+			      } 
+
+			
+		</node>
+		<node class="0" clock-cycles="14" energy="19.174" id="N24">
+			      else
+      {
+    	  tmp1 = lin[j] ^ ((unsigned char) ((cword) &gt;&gt; 8));
+
+			ldrh ldr add ldrh mov mov ldrb eor and strh 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N25">
+			      }
+
+			
+		</node>
+		<node class="0" clock-cycles="12" energy="18.176" id="N26">
+			      cword = icrctb[tmp1] ^ ((unsigned char) ((cword) &amp; 0xFF)) &lt;&lt; 8;
+  }
+
+			ldr ldrh mov add ldrb mov ldrh eor strh 
+		</node>
+		<node bool-express="A" class="1" clock-cycles="0" energy="0.0" id="N27">
+			<condition clock-cycles="8" energy="5.07" id="A">
+				<probability finish="0.5218" pdf="1" start="0.0"/>
+			</condition>
+			  /* @BranchProb(0.5218, 1) */
+  if (jrev &gt;= 0)
+
+			ldr cmp blt 
+		</node>
+		<node class="0" clock-cycles="4" energy="5.671" id="N28">
+			  {
+      tmp2 = cword;
+
+			ldrh strh b 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N29">
+			  } 
+
+			
+		</node>
+		<node class="0" clock-cycles="17" energy="24.693" id="N30">
+			  else
+  {
+      tmp2 = rchr[((unsigned char) ((cword) &gt;&gt; 8))] | rchr[((unsigned char) ((cword) &amp; 0xFF))] &lt;&lt; 8;
+
+			ldr ldrh mov and ldrb mov ldr ldrb ldrb mov orr strh 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N31">
+			  }
+
+			
+		</node>
+		<node class="0" clock-cycles="7" energy="8.934" id="N32">
+			  
+  return (tmp2);
+}
+
+			ldrh mov ldmea 
+		</node>
+		<node class="0" clock-cycles="16" energy="19.2945" id="N33">
+			    	  icrctb[j] = icrc1(j &lt;&lt; 8, (unsigned char) 0);
+			ldr ldrh mov add ldrh mov mov mov mov mov bl strh 
+		</node>
+		<node class="0" clock-cycles="22" energy="31.634" id="N34">
+			    	  rchr[j] = (unsigned char) (it[j &amp; 0xF] &lt;&lt; 4 | it[j &gt;&gt; 4]);
+
+			ldr ldrh ldr ldrh and ldrb mov ldr ldrh mov mov mov ldrb orr strb 
+		</node>
+		<node class="0" clock-cycles="16" energy="27.994" id="N35">
+			{
+  int i, flag;
+  unsigned short ans = (crc ^ onech &lt;&lt; 8);
+  /* LP01 @LoopMax(8, 1) */
+
+			mov stmfd sub sub mov mov strh mov strb ldrb mov ldrh eor strh 
+		</node>
+		<node class="2" clock-cycles="12" energy="11.88" id="N36">
+			<probability idloop="LP01" max-times="8" type="1"/>
+			  for (i = 0; i &lt; 8; i++)
+
+			mov str ldr cmp ble b ldr add str b 
+		</node>
+		<node bool-express="A" class="1" clock-cycles="0" energy="0.0" id="N37">
+			<condition clock-cycles="8" energy="5.07" id="A">
+				<probability finish="0.50" pdf="1" start="0.0"/>
+			</condition>
+			  {
+	  flag = ans &amp; 0x8000;
+	  /* @BranchProb(0.50, 1) */
+	  if (flag != 0)
+
+			ldrh and str ldr cmp beq 
+		</node>
+		<node class="0" clock-cycles="10" energy="13.929" id="N38">
+				  {
+		ans = (ans &lt;&lt;= 1) ^ 4129;
+
+			ldrh mov mov strh ldr eor strh b 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N39">
+				  }
+
+			
+		</node>
+		<node class="0" clock-cycles="4" energy="5.88" id="N40">
+			          else
+      	  {
+		ans &lt;&lt;= 1;
+
+			ldrh mov strh 
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N41">
+			      	  }
+
+			
+		</node>
+		<node class="0" clock-cycles="0" energy="0.0" id="N42">
+			  }
+
+			
+		</node>
+		<node class="0" clock-cycles="7" energy="8.934" id="N43">
+			  return ans;
+}
+
+			ldrh mov ldmea 
+		</node>
+		<node class="0" clock-cycles="0" energy="0" id="F44">
+			
+			
+		</node>
+	</nodes>
+	<edges>
+		<edge from-idnode="N5" to-idnode="N1"/>
+		<edge from-idnode="N1" to-idnode="N2"/>
+		<edge from-idnode="N5" to-idnode="N3"/>
+		<edge from-idnode="N2" to-idnode="N3"/>
+		<edge from-idnode="I0" to-idnode="N4"/>
+		<edge from-idnode="N4" to-idnode="N6"/>
+		<edge from-idnode="N6" to-idnode="N7"/>
+		<edge from-idnode="N7" to-idnode="N8"/>
+		<edge from-idnode="N8" to-idnode="N9"/>
+		<edge from-idnode="N34" to-idnode="N10"/>
+		<edge from-idnode="N8" to-idnode="N11"/>
+		<edge from-idnode="N10" to-idnode="N8"/>
+		<edge from-idnode="N6" to-idnode="N12"/>
+		<edge from-idnode="N11" to-idnode="N12"/>
+		<edge from-idnode="N12" to-idnode="N13"/>
+		<edge from-idnode="N13" to-idnode="N14"/>
+		<edge from-idnode="N12" to-idnode="N15"/>
+		<edge from-idnode="N15" to-idnode="N16"/>
+		<edge from-idnode="N16" to-idnode="N17"/>
+		<edge from-idnode="N17" to-idnode="N18"/>
+		<edge from-idnode="N15" to-idnode="N18"/>
+		<edge from-idnode="N18" to-idnode="N19"/>
+		<edge from-idnode="N14" to-idnode="N19"/>
+		<edge from-idnode="N19" to-idnode="N20"/>
+		<edge from-idnode="N20" to-idnode="N21"/>
+		<edge from-idnode="N21" to-idnode="N22"/>
+		<edge from-idnode="N22" to-idnode="N23"/>
+		<edge from-idnode="N21" to-idnode="N24"/>
+		<edge from-idnode="N24" to-idnode="N25"/>
+		<edge from-idnode="N25" to-idnode="N26"/>
+		<edge from-idnode="N23" to-idnode="N26"/>
+		<edge from-idnode="N20" to-idnode="N27"/>
+		<edge from-idnode="N26" to-idnode="N20"/>
+		<edge from-idnode="N27" to-idnode="N28"/>
+		<edge from-idnode="N28" to-idnode="N29"/>
+		<edge from-idnode="N27" to-idnode="N30"/>
+		<edge from-idnode="N30" to-idnode="N31"/>
+		<edge from-idnode="N31" to-idnode="N32"/>
+		<edge from-idnode="N29" to-idnode="N32"/>
+		<edge from-idnode="N9" to-idnode="N33"/>
+		<edge from-idnode="N33" to-idnode="N35"/>
+		<edge from-idnode="N32" to-idnode="N5"/>
+		<edge from-idnode="N35" to-idnode="N36"/>
+		<edge from-idnode="N36" to-idnode="N37"/>
+		<edge from-idnode="N37" to-idnode="N38"/>
+		<edge from-idnode="N38" to-idnode="N39"/>
+		<edge from-idnode="N37" to-idnode="N40"/>
+		<edge from-idnode="N40" to-idnode="N41"/>
+		<edge from-idnode="N41" to-idnode="N42"/>
+		<edge from-idnode="N39" to-idnode="N42"/>
+		<edge from-idnode="N36" to-idnode="N43"/>
+		<edge from-idnode="N42" to-idnode="N36"/>
+		<edge from-idnode="N43" to-idnode="N34"/>
+		<edge from-idnode="N3" to-idnode="F44"/>
+	</edges>
+</cfg>

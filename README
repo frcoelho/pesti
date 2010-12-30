@@ -1,0 +1,3 @@
+./build/pesti examples/if.xml 1000 0.95 0.03
+
+pesti <CFG> <iteracoes> <confianca> <erro>
