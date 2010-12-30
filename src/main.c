@@ -28,6 +28,11 @@ int main(int argc, char *argv[])
 	struct tm  ts;
 	char       buf[80];
 
+	if (argc != 5) {
+		printf("Usage: %s <CFG> <iterations> <error> <confidence>\n",
+				argv[0]);
+		exit(-1);
+	}
 	// Obtem o tempo corrente
 	time(&inicio);
 

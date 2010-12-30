@@ -1,3 +1,8 @@
 ./build/pesti examples/if.xml 1000 0.03 0.95
 
-pesti <CFG> <iteracoes> <erro> <confianca>
+pesti <CFG> <iterations> <error> <confidence>
+
+CFG - xml file with program codified
+iterations - number of iterations to run
+error - error to be considered in simulation
+confidence - confidence to be considered in simulation
