@@ -28,7 +28,7 @@ tblock *searchBlock(tblock *, const char *);
 void buildGraphFromEdges(xmlNode *);
 void loadCfg(char *);
 //void runCfg(tblock *, tblock *, unsigned int , double , double );
-void runCfg(tblock *, unsigned int , double , double );
+void runCfg(tblock *, unsigned int , double , double, double);
 double randNumber(double, double);
 tblock *runCase(tblock *, double );
 tblock *runBranch(tbranch_node *, double *, double *);
@@ -39,7 +39,7 @@ double calculateMean(double);
 double calculateSn(double , double);
 double getT(unsigned int , double);
 int stopSimulation(double , double , double);
-void dumpStatistics(void);
+void dumpStatistics(const char *);
 void freeSample(void);
 
 

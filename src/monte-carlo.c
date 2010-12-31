@@ -19,9 +19,9 @@ tsamples *start_samples = NULL;
 /***
 	This functiosn produces a file wich content is the result of simulation
 */
-void dumpStatistics(void){
+void dumpStatistics(const char *outfile){
 
-	FILE *fpesti = fopen("pesti-results.output", "wb");
+	FILE *fpesti = fopen(outfile, "wb");
 	tsamples *axsample = start_samples;
 
 	while(axsample){

@@ -170,11 +170,13 @@ tblock *runLoop(tloop_node *loop, double *energycost, double *cyclecost)
 	start_graph: Pointer to cfg's start block.
 */
 //void runCfg(tblock *start_graph, tblock *end_graph, unsigned int nrexecutions, double max_err, double confidence)
-void runCfg(tblock *start_graph, unsigned int nrexecutions, double max_err, double confidence)
+void runCfg(tblock *start_graph, unsigned int nrexecutions, double max_err, double confidence, double finish)
 {
 	tblock *start;
 	unsigned int j, nrsimulations=0;
 	double p, energy_one_path, cycles_one_path;
+	char outfile[100];
+
 	// seed for generating random number
 	srand(time(0));
 	do{
@@ -217,7 +219,8 @@ void runCfg(tblock *start_graph, unsigned int nrexecutions, double max_err, doub
 	nrsimulations++;
      } while (!stopSimulation ( (double) (nrsimulations*nrexecutions), max_err, confidence));
 
-	dumpStatistics();
+	snprintf(outfile, sizeof(outfile), "pesti-results_%f.output", finish);
+	dumpStatistics(outfile);
 	freeSample();
 }
 

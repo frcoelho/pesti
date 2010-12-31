@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
 	for (i = start_range; i <= end_range; i += step) {
 		setup(i);
 		printf("Simulating CFG (finish=%f)\n", i);
-		runCfg(start_block, atoi(argv[2]), atof(argv[3]), atof(argv[4]));
+		runCfg(start_block, atoi(argv[2]), atof(argv[3]), atof(argv[4]), i);
 		printf("Listing CFG (finish=%f)\n", i);
 		listNodes(start_block, i);
 	}
