@@ -61,8 +61,6 @@ void setup(double finish)
 int main(int argc, char *argv[])
 {
         time_t     inicio, fim;
-	struct tm  ts;
-	char       buf[80];
 	double i;
 
 	if (argc != 5) {

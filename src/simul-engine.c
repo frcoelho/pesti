@@ -162,6 +162,8 @@ tblock *runLoop(tloop_node *loop, double *energycost, double *cyclecost)
 			}
 		}
 	}
+
+	return NULL;
 }
 
 

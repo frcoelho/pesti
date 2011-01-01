@@ -31,13 +31,13 @@ int  countElement(xmlNode *node, const char *tagname)
 	int qt=0;
 	xmlNode *current = NULL;
 
-	if (!strcmp(node->name, tagname))
+	if (!strcmp((char *)node->name, tagname))
 		return 0;
 	else {
 		current = node->children;
 		while(current)
 		{
-			if (!strcmp(current->name, tagname))
+			if (!strcmp((char *)current->name, tagname))
 				qt++;;
 
 			current = current->next;
@@ -58,18 +58,20 @@ xmlNode *getElement(xmlNode *node, const char *tagname)
 {
 	xmlNode *current = NULL;
 
-	if (!strcmp(node->name, tagname))
+	if (!strcmp((char *)node->name, tagname))
 		return node;
 	else {
 		current = node->children;
 		while(current)
 		{
-			if (!strcmp(current->name, tagname))
+			if (!strcmp((char *)current->name, tagname))
 				return(current);
 
 			current = current->next;
 		}
 	}
+
+	return NULL;
 }
 
 
@@ -183,7 +185,7 @@ void createListProbSwitch(xmlNode *node, tbranch_switch_node *switch_node)
 		i=0;
 		while(current)
 		{
-			if (!strcmp(current->name, "probability")){
+			if (!strcmp((char *)current->name, "probability")){
 				switch_node->prob_cases[i].prob_start = getAttrDbl(current, "start");
 				switch_node->prob_cases[i].prob_finish = getAttrDbl(current, "finish");
 				start_range = getAttrDbl(current, "start-range");
@@ -246,7 +248,7 @@ void buildClauses(xmlNode *node, tclauses_cond *clauses){
 		i=0;
 		while(current) // scan tags condition
 		{
-			if (!strcmp(current->name, "condition")){ // "probability"
+			if (!strcmp((char *)current->name, "condition")){ // "probability"
 				clauses->lconditions[i].timesexec = 0;
 				strcpy(clauses->lconditions[i].info_cond.id, getAttrStr(current, "id"));
 				clauses->lconditions[i].info_cond.clock_cycles = getAttrDbl(current, "clock-cycles");
@@ -256,7 +258,7 @@ void buildClauses(xmlNode *node, tclauses_cond *clauses){
 				probability = current->children;
 				while(probability) // scan tags probability
 				{
-					if (!strcmp(probability->name, "probability")){
+					if (!strcmp((char *)probability->name, "probability")){
 						start_range = getAttrDbl(probability, "start-range");
 						end_range = getAttrDbl(probability, "end-range");
 						step = getAttrDbl(probability, "step");
@@ -316,7 +318,7 @@ tcondition *findClause(char idclause, tclauses_cond *clauses){
 void buildTreeExpress(tclauses_cond *clauses){
 	unsigned int i=0;
 
-	ttree_express *newe, *oper1, *oper2, *top = NULL;
+	ttree_express *newe = NULL, *oper1, *oper2, *top = NULL;
 
 	while (clauses->bexpress[i])
 	{
@@ -378,7 +380,7 @@ void *createNode(xmlNode *current)
 				strcpy(bnode->clauses->bexpress, getAttrStr(current, "bool-express"));
 				buildClauses(current, bnode->clauses);
 				buildTreeExpress(bnode->clauses);
-				printf("ROOT: %d\n", bnode->clauses->root_express);
+				printf("ROOT: %p\n", bnode->clauses->root_express);
 				return ((void *) bnode);
 			} break;
 		case 50:  // loop block
@@ -403,7 +405,7 @@ void *createNode(xmlNode *current)
 					strcpy(lnode->clauses->bexpress, getAttrStr(current, "bool-express"));
 					buildClauses(current, lnode->clauses);
 					buildTreeExpress(lnode->clauses);
-					printf("WHILE ROOT: %d\n", lnode->clauses->root_express);
+					printf("WHILE ROOT: %p\n", lnode->clauses->root_express);
 				}
 				return ((void *) lnode);
 			} break;
@@ -426,6 +428,8 @@ void *createNode(xmlNode *current)
 			}
 
 	}
+
+	return NULL;
 }
 
 /***
@@ -563,7 +567,6 @@ void freeNodes(tblock *start)
 void listNodes(tblock *start, double finish)
 {
 	FILE *pesti;
-	char strline[255];
 	tblock *node_start = start;
 	char filename[20];
 
@@ -582,7 +585,7 @@ void listNodes(tblock *start, double finish)
 		printf("Energy: %11.3f\n", node_start->info_node.energy);
 		printf("Consumed Energy: %11.3f\n", node_start->info_node.consumed_energy);
 		printf("Class node: %d\n", node_start->class_node);
-		printf("Address node: %d\n", node_start->node);
+		printf("Address node: %p\n", node_start->node);
 		printf("Times Exec.: %d\n", node_start->timesexec);
 
 
@@ -608,7 +611,6 @@ void listNodes(tblock *start, double finish)
 		}
 
 		if (node_start->class_node == 51){
-			int i=0;
 			tbranch_switch_node *axsw = (tbranch_switch_node *) (node_start->node); //()->prob_cases;
 			printf("Qtde. Cases: %d\n", axsw->qtcases);
 		}
