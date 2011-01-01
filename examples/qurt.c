@@ -33,9 +33,9 @@ double sqrt(double val)
 {
   double x = val/10;
   double dx;
-  double diff;
+  double delta;
   double min_tol = 0.00001;
-  double fdiff;
+  double fdelta;
   int i, flag;
 
   flag = 0;
@@ -54,10 +54,10 @@ double sqrt(double val)
       {
 	dx = (val - (x*x)) / (2.0 * x);
 	x = x + dx;
-	diff = val - (x*x);
-	fdiff = fabs(diff);
+	delta = val - (x*x);
+	fdelta = fabs(delta);
 	/* @BranchProb(0.05, 1) */ 
-	if ( fdiff <= min_tol ) 
+	if ( fdelta <= min_tol ) 
 	{
 		flag = 1;
 	}

@@ -1059,9 +1059,9 @@ qurt:
 .LC11:
 	.ascii	"qurt.c\000"
 .LC8:
-	.ascii	"fdiff\000"
+	.ascii	"fdelta\000"
 .LC6:
-	.ascii	"diff\000"
+	.ascii	"delta\000"
 .LC7:
 	.ascii	"min_tol\000"
 .LC2:
