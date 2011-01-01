@@ -76,11 +76,15 @@ int main(int argc, char *argv[])
 	//printf("no raiz: %s\n", start_block->info_node.id);
 
 	for (i = start_range; i <= end_range; i += step) {
-		setup(i);
-		printf("Simulating CFG (finish=%f)\n", i);
+		
+		if (start_range && end_range && step)
+			setup(i);
+		printf("Simulating CFG\n");
 		runCfg(start_block, atoi(argv[2]), atof(argv[3]), atof(argv[4]), i);
-		printf("Listing CFG (finish=%f)\n", i);
+		printf("Listing CFG\n");
 		listNodes(start_block, i);
+		if (!start_range || !end_range || !step)
+			break;
 	}
 	freeNodes(start_block);
 

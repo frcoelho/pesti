@@ -161,7 +161,7 @@ double getAttrDbl(xmlNode *current, const char *attr)
 
 	property = getAttr(current, attr);
 
-	if (strlen(property) > 0)
+	if (property && strlen(property) > 0)
 		return(atof(property));
 	return (0);
 
@@ -551,9 +551,11 @@ void freeNodes(tblock *start)
 		case 50:
 			{
 				tloop_node *node = blk->node;
-				freeTree(node->clauses->root_express);
-				free(node->clauses->lconditions);
-				free(node->clauses);
+				if (node->clauses) {
+					freeTree(node->clauses->root_express);
+					free(node->clauses->lconditions);
+					free(node->clauses);
+				}
 				break;
 			}
 		}
