@@ -24,6 +24,7 @@ void *createNode(xmlNode *);
 void addBlock(xmlNode *);
 void loadNodes(xmlNode *);
 void listNodes(tblock *, double);
+void freeNodes(tblock *);
 tblock *searchBlock(tblock *, const char *);
 void buildGraphFromEdges(xmlNode *);
 void loadCfg(char *);

@@ -505,7 +505,58 @@ void printtree(ttree_express *r)
 		else puts("Sem pai\n");*/
 		printf("%c\n", r->idnode);
 		printtree(r->right);
-		free(r);
+	}
+}
+
+static void freeTree(ttree_express *r)
+{
+	if (!r)
+		return;
+
+	freeTree(r->left);
+	freeTree(r->right);
+	free(r);
+}
+
+void freeNodes(tblock *start)
+{
+	tblock *blk = start, *tmp_blk;
+
+	while (blk) {
+		switch (blk->class_node) {
+		case 49:
+			{
+				tbranch_node *node = blk->node;
+				freeTree(node->clauses->root_express);
+				free(node->clauses->lconditions);
+				free(node->clauses);
+				break;
+			}
+		case 51:
+			{
+				tbranch_switch_node *node = blk->node;
+				free(node->prob_cases);
+				tswitch_case *sw = node->first_case;
+				while (sw) {
+					tswitch_case *tmp = sw;
+					sw = sw->next_case;
+					free(tmp);
+				}
+				break;
+			}
+		case 50:
+			{
+				tloop_node *node = blk->node;
+				freeTree(node->clauses->root_express);
+				free(node->clauses->lconditions);
+				free(node->clauses);
+				break;
+			}
+		}
+		tmp_blk = blk;
+		blk = blk->next_block;
+		free(tmp_blk->node);
+		free(tmp_blk);
 	}
 }
 
@@ -514,7 +565,6 @@ void listNodes(tblock *start, double finish)
 	FILE *pesti;
 	char strline[255];
 	tblock *node_start = start;
-	tblock *ax=NULL;
 	char filename[20];
 
 	snprintf(filename, sizeof(filename), "pesti_%f.csv", finish);
@@ -554,8 +604,6 @@ void listNodes(tblock *start, double finish)
 			puts("listando expressoes\n");
 			printtree(bnode->clauses->root_express);
 			puts("expressoes listadas\n");
-			free(bnode->clauses->lconditions);
-			free(bnode->clauses);
 			puts("\n\n");
 		}
 
@@ -563,8 +611,6 @@ void listNodes(tblock *start, double finish)
 			int i=0;
 			tbranch_switch_node *axsw = (tbranch_switch_node *) (node_start->node); //()->prob_cases;
 			printf("Qtde. Cases: %d\n", axsw->qtcases);
-			if (axsw->prob_cases)
-				free(axsw->prob_cases);
 		}
 
 		if (node_start->class_node == 50){
@@ -590,26 +636,12 @@ void listNodes(tblock *start, double finish)
 				printf("	Start: %g	Finish: %g\n", loop->clauses->lconditions[m].probability.prob_start, loop->clauses->lconditions[m].probability.prob_finish);
 			}
 			printtree(loop->clauses->root_express);
-			free(loop->clauses->lconditions);
-			free(loop->clauses);
 			puts("\n\n");
 			}
 		}
 
 		puts("\n\n");
-		ax = node_start;
 		node_start = node_start->next_block;
-		if (ax->class_node == 51){
-			tswitch_case *sw = ((tbranch_switch_node *) (ax->node))->first_case;
-			tswitch_case *aux;
-			while(sw){
-				aux = sw;
-				sw = sw->next_case;
-				free(aux);
-			}
-		}
-		free(ax->node);
-		free(ax);
 		puts("Fim\n");
 	}
 

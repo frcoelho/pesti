@@ -84,6 +84,7 @@ int main(int argc, char *argv[])
 		printf("Listing CFG (finish=%f)\n", i);
 		listNodes(start_block, i);
 	}
+	freeNodes(start_block);
 
 	time(&fim);
 
