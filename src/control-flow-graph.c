@@ -120,13 +120,18 @@ char *getAttrStr(xmlNode *current, const char *attr)
 */
 char getAttrChr(xmlNode *current, const char *attr)
 {
-	char *property;
+	char *property, ret;
 
 	property = getAttr(current, attr);
 
-	if (strlen(property) > 0)
-		return (property[0]);
-	else return 0;
+	if (property && strlen(property) > 0)
+		ret = property[0];
+	else
+		ret = 0;
+
+	free(property);
+
+	return ret;
 }
 
 
@@ -139,12 +144,18 @@ char getAttrChr(xmlNode *current, const char *attr)
 int getAttrInt(xmlNode *current, const char *attr)
 {
 	char *property;
+	int ret;
 
 	property = getAttr(current, attr);
 
-	if (strlen(property) > 0)
-		return(atoi(property));
-	return (0);
+	if (property && strlen(property) > 0)
+		ret = atoi(property);
+	else
+		ret = 0.0;
+
+	free(property);
+
+	return ret;
 
 }
 
@@ -158,13 +169,18 @@ int getAttrInt(xmlNode *current, const char *attr)
 double getAttrDbl(xmlNode *current, const char *attr)
 {
 	char *property;
+	double ret;
 
 	property = getAttr(current, attr);
 
 	if (property && strlen(property) > 0)
-		return(atof(property));
-	return (0);
+		ret = atof(property);
+	else
+		ret = 0.0;
 
+	free(property);
+
+	return ret;
 }
 
 
@@ -206,10 +222,12 @@ void createListProbSwitch(xmlNode *node, tbranch_switch_node *switch_node)
 */
 void createListProbLoop(xmlNode *node, tloop_node *loop_node)
 {
-	char *type, *pdf;
+	char *type, *pdf, *idloop;
 
 	type = getAttrStr(node, "type");
-	strcpy(loop_node->idloop, getAttrStr(node, "idloop"));
+	idloop = getAttrStr(node, "idloop");
+	strncpy(loop_node->idloop, idloop, 8);
+	free(idloop);
 	loop_node->type_loop = type[0];
 	switch (type[0])
 	{
@@ -239,6 +257,7 @@ void buildClauses(xmlNode *node, tclauses_cond *clauses){
 
 	int qtclauses, i;
 	xmlNode *current, *probability;
+	char *tmp;
 
 	qtclauses = countElement(node, "condition");
 	if (qtclauses > 0){
@@ -250,7 +269,9 @@ void buildClauses(xmlNode *node, tclauses_cond *clauses){
 		{
 			if (!strcmp((char *)current->name, "condition")){ // "probability"
 				clauses->lconditions[i].timesexec = 0;
-				strcpy(clauses->lconditions[i].info_cond.id, getAttrStr(current, "id"));
+				tmp = getAttrStr(current, "id");
+				strncpy(clauses->lconditions[i].info_cond.id, tmp, 5);
+				free(tmp);
 				clauses->lconditions[i].info_cond.clock_cycles = getAttrDbl(current, "clock-cycles");
 				clauses->lconditions[i].info_cond.energy = getAttrDbl(current, "energy");
 				clauses->lconditions[i].info_cond.consumed_cycles = 0.0;
@@ -356,7 +377,7 @@ void buildTreeExpress(tclauses_cond *clauses){
 */
 void *createNode(xmlNode *current)
 {
-	char class;
+	char class, *tmp;
 	xmlNode *axcurrent=NULL;
 
 	class = getAttrChr(current, "class");
@@ -377,7 +398,9 @@ void *createNode(xmlNode *current)
 				bnode->then_node = NULL;
 				bnode->else_node = NULL;
 				bnode->clauses->root_express = NULL;
-				strcpy(bnode->clauses->bexpress, getAttrStr(current, "bool-express"));
+				tmp = getAttrStr(current, "bool-express");
+				strncpy(bnode->clauses->bexpress, tmp, 100);
+				free(tmp);
 				buildClauses(current, bnode->clauses);
 				buildTreeExpress(bnode->clauses);
 				printf("ROOT: %p\n", bnode->clauses->root_express);
@@ -402,7 +425,9 @@ void *createNode(xmlNode *current)
 					axcurrent =  getElement(axcurrent, "probability");
 					strcpy(lnode->idloop, getAttrStr(axcurrent, "idloop"));
 					lnode->type_loop = '3';
-					strcpy(lnode->clauses->bexpress, getAttrStr(current, "bool-express"));
+					tmp = getAttrStr(current, "bool-express");
+					strncpy(lnode->clauses->bexpress, tmp, 100);
+					free(tmp);
 					buildClauses(current, lnode->clauses);
 					buildTreeExpress(lnode->clauses);
 					printf("WHILE ROOT: %p\n", lnode->clauses->root_express);
@@ -438,12 +463,16 @@ void *createNode(xmlNode *current)
 */
 void addBlock(xmlNode *current)
 {
+	char *id;
+
+	id = getAttrStr(current, "id");
+
 	if (start_block == NULL)
 	{
 		//puts("inicio entao\n");
 		start_block = (tblock *) malloc(sizeof(tblock));
 		start_block->next_block = NULL;
-		strcpy((char *) start_block->info_node.id, (char *) getAttrStr(current, "id"));
+		strncpy(start_block->info_node.id, id, 5);
 		start_block->info_node.clock_cycles = getAttrInt(current, "clock-cycles");
 		start_block->class_node = getAttrChr(current, "class");
 		start_block->info_node.energy = getAttrDbl(current, "energy");
@@ -457,14 +486,14 @@ void addBlock(xmlNode *current)
 	else
 	{
 		puts("inicio senao\n");
-		puts((char *) getAttrStr(current, "id"));
+		puts(id);
 		tblock *new_block;
 
 		new_block = (tblock *) malloc(sizeof(tblock));
 		new_block->next_block = NULL;
 		end_block->next_block = new_block;
 		end_block = new_block;
-		strcpy((char *) new_block->info_node.id, (char *) getAttrStr(current, "id"));
+		strncpy(new_block->info_node.id, id, 5);
 		new_block->info_node.clock_cycles = getAttrInt(current, "clock-cycles");
 		new_block->info_node.energy = getAttrDbl(current, "energy");
 		new_block->info_node.consumed_cycles = 0;
@@ -474,6 +503,8 @@ void addBlock(xmlNode *current)
 		new_block->node = createNode(current);
 		puts("fim senao\n");
 	}
+
+	free(id);
 }
 
 
@@ -684,12 +715,17 @@ void buildGraphFromEdges(xmlNode *edges)
 {
 	xmlNode *current = NULL;
 	tblock *from = NULL, *to = NULL;
+	char *tmp;
 
 	current = edges->children;
 	while(current) {
 		if (current->type == XML_ELEMENT_NODE) {
-			from = searchBlock(start_block, getAttrStr(current, "from-idnode"));
-			to = searchBlock(start_block, getAttrStr(current, "to-idnode"));
+			tmp = getAttrStr(current, "from-idnode");
+			from = searchBlock(start_block, tmp);
+			free(tmp);
+			tmp = getAttrStr(current, "to-idnode");
+			to = searchBlock(start_block, tmp);
+			free(tmp);
 			printf("%s->%s\n",from->info_node.id, to->info_node.id);
 			if (from && to) {
 				switch(from->class_node) {
